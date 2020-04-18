@@ -1,9 +1,17 @@
 package com.codeclan.example.BookingsSystem.models;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "bookings")
 public class Booking {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "date")
     private String date;
 
     private Course course;
@@ -15,6 +23,8 @@ public class Booking {
         this.course = course;
         this.customer = customer;
     }
+
+    public Booking(){}
 
     public Long getId() {
         return id;
