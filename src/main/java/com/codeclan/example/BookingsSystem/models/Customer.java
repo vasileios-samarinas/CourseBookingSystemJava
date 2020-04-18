@@ -1,9 +1,14 @@
 package com.codeclan.example.BookingsSystem.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Entity
+@Table(name = "customers")
 public class Customer {
 
     @Id
@@ -19,6 +24,8 @@ public class Customer {
     @Column(name = "age")
     private int age;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Booking>bookings;
 
     public Customer(String name, String town, int age) {
