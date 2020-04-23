@@ -4,7 +4,6 @@ import com.codeclan.example.BookingsSystem.models.Booking;
 import com.codeclan.example.BookingsSystem.models.Course;
 import com.codeclan.example.BookingsSystem.repositories.BookingRepository;
 import com.codeclan.example.BookingsSystem.repositories.CourseRepository;
-import com.codeclan.example.BookingsSystem.repositories.CustomerRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,6 @@ class BookingsSystemApplicationTests {
 	@Autowired
 	BookingRepository bookingRepository;
 
-	@Autowired
-	CustomerRepository customerRepository;
 
 	@Test
 	void contextLoads() {
@@ -43,6 +40,12 @@ class BookingsSystemApplicationTests {
 	public void canGetAllBookingsForDate(){
 		List<Booking> found = bookingRepository.findAllByDate("24-12-2018");
 		assertEquals(3, found.size());
+	}
+
+	public void canGetCoursesForStarRating(){
+		List<Course> found = courseRepository.findCoursesByStarRating(5);
+		assertEquals(1, found.size());
+		assertEquals("Intro To Python", found.get(0).getName());
 	}
 
 
