@@ -1,6 +1,8 @@
 package com.codeclan.example.BookingsSystem.controllers;
 
+import com.codeclan.example.BookingsSystem.models.Course;
 import com.codeclan.example.BookingsSystem.models.Customer;
+import com.codeclan.example.BookingsSystem.repositories.CourseRepository;
 import com.codeclan.example.BookingsSystem.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,9 @@ public class CustomerController {
 
     @Autowired
     CustomerRepository customerRepository;
+
+    @Autowired
+    CourseRepository courseRepository;
 
     @GetMapping
     public ResponseEntity<List<Customer>> getAllCustomers(){
@@ -44,6 +49,12 @@ public class CustomerController {
         customerRepository.deleteById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/{customerId}/courses")
+    public ResponseEntity<List<Course>> getCoursesForCustomer(@PathVariable Long customerId) {
+        return new ResponseEntity<>(courseRepository.findAllByBookingsCustomerId(customerId), HttpStatus.OK);
+    }
+
 
 
 }

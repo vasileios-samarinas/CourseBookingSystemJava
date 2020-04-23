@@ -48,6 +48,12 @@ class BookingsSystemApplicationTests {
 		assertEquals("Intro To Python", found.get(0).getName());
 	}
 
+	@org.junit.Test
+	public void canGetAllCourseForCustomer(){
+		List<Course> found = courseRepository.findAllByBookingsCustomerId(1L);
+		assertEquals("Intro To Python", found.get(0).getName());
+	}
+
 
 
 }
