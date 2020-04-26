@@ -24,7 +24,7 @@ public class BookingController {
     }
 
     @GetMapping(value="/{id}")
-    public ResponseEntity<Course> getBooking(@PathVariable Long id) {
+    public ResponseEntity<Booking> getBooking(@PathVariable Long id) {
         return new ResponseEntity(bookingRepository.findById(id), HttpStatus.OK);
     }
 
